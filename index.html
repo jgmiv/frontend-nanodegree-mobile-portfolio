@@ -8,10 +8,13 @@
     <title>Cameron Pittman: Portfolio</title>
 
     <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <!-- added @ import in styles.css for the fonts -->
+    <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> -->
 
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/print.css" rel="stylesheet">
+    <!-- added seperate @ media queries to take advantage of not render blocking while 2 separate items may not be happening at time of onload-->
+    <link href="css/print.css" rel="stylesheet" media="print">
+    <link href="css/portrait.css" rel="stylesheet" media="screen">
 
     <script>
       (function(w,g){w['GoogleAnalyticsObject']=g;
@@ -22,7 +25,8 @@
       ga('send', 'pageview');
     </script>
     <script src="http://www.google-analytics.com/analytics.js"></script>
-    <script async src="js/perfmatters.js"></script>
+    <!-- added async to js in order to request js while page is loading instead of render blocking while waiting for request to js-->
+    <script src="js/perfmatters.js" async></script>
   </head>
 
   <body>

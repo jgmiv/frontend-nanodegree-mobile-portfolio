@@ -437,7 +437,7 @@ var resizePizzas = function(size) {
         console.log("bug in sizeSwitcher");
     }
 
-    var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
+    var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
 
     for (var i = 0; i < randomPizzas.length; i++) {
       randomPizzas[i].style.width = newWidth + "%";
@@ -451,7 +451,7 @@ var resizePizzas = function(size) {
   window.performance.measure("measure_pizza_resize", "mark_start_resize", "mark_end_resize");
   var timeToResize = window.performance.getEntriesByName("measure_pizza_resize");
   console.log("Time to resize pizzas: " + timeToResize[0].duration + "ms");
-}
+};
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
@@ -465,7 +465,7 @@ for (var i = 2; i < 100; i++) {
 window.performance.mark("mark_end_generating");
 window.performance.measure("measure_pizza_generation", "mark_start_generating", "mark_end_generating");
 var timeToGenerate = window.performance.getEntriesByName("measure_pizza_generation");
-console.log("Time to generate pizzas on load: " + timeToGenerate[0].duration + "ms");
+// console.log("Time to generate pizzas on load: " + timeToGenerate[0].duration + "ms");
 
 // Iterator for number of times the pizzas in the background have scrolled.
 // Used by updatePositions() to decide when to log the average time per frame
@@ -489,14 +489,13 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
-  var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-  var left = Left;
-  var esty = items.style.left;
+  var items = document.getElementsByClassName('mover');
+  var pos = document.body.scrollTop;
   
   for (var i = 0; i < items.length; i++) {
-    console.log(phase, document.body.scrollTop/ 1250)
-    esty.left = left + 100 * phase + 'px';
+    var phase = Math.sin((pos/ 1250) + (i % 5));
+    // console.log(phase, document.body.scrollTop/ 1250)
+    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -516,8 +515,12 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
-    var elem = document.createElement('img');
+  var pWidth = Math.ceil(window.innerWidth/ s);
+  var pHeight = Math.ceil(window.innerHeight/ s);
+  var numberPizzas = pWidth * pHeight;
+  
+  for (var i = 0; i < numberPizzas; i++) { 
+    var elem = document.createElement('img'); 
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";

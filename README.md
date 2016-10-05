@@ -1,12 +1,17 @@
 ## Website Performance Optimization portfolio project
 
-Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
-
 To get started, check out the repository and inspect the code.
 
 ### Getting started
 
 ####Part 1: Optimize PageSpeed Insights score for index.html
+
+##First order of business was to speed up the index.html utilizing ASYNC within our JS script tags to insure
+rendering not blocked as .js files accessed.  Also, inlined CSS within the .html to prevent render blocking.
+
+##Also downloaded gulp and created a gulpfile.js which allowed us to optimize the speed by 
+usign gulp to minify, beautify, uglify, minify images, concatinate all code, also removed any trailing white
+space with jshint.  Gulp was a great tool to use to do all of these at once. 
 
 Some useful tips to help you get started:
 
@@ -31,6 +36,9 @@ Some useful tips to help you get started:
 Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
 
 ####Part 2: Optimize Frames per Second in pizza.html
+
+##I was able to optimize the frames per second in HTML by reducing FSL that was caused by the function that slides
+pizzas on the backfround.  I had to remove the read elements out of the for loop.  Most, if not all, of the tips and tricks were used or referenced to get to a 98/100 on the speed page insights. 
 
 To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js. 
 
